@@ -7,16 +7,11 @@ dev environment that bypasses CORS for convenience is very useful.
 
 ## Quickstart
 
-Open up two consoles, first one tilting up an htsget-rs instance:
+Assuming you have `python3` and `docker-(compose)` installed on your local machine...
 
 ```sh
-docker compose up
-```
-
-The second one serving up IGV.js's static assets:
-
-```sh
-python -
+git clone --recursive https://github.com/umccr/htsget-igv.js
+bin/start.sh
 ```
 
 [htsget-deploy]: https://github.com/umccr/htsget-deploy
