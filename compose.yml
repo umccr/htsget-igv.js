@@ -1,0 +1,18 @@
+services:
+  htsget-rs:
+    image: ghcr.io/umccr/htsget-rs:latest
+    environment:
+      HTSGET_TICKET_SERVER_CORS_ALLOW_ORIGINS: "All"
+      HTSGET_TICKET_SERVER_CORS_ALLOW_METHODS: "All"
+      HTSGET_TICKET_SERVER_CORS_ALLOW_HEADERS: "All"
+      HTSGET_TICKET_SERVER_CORS_EXPOSE_HEADERS: "All"
+      HTSGET_DATA_SERVER_CORS_ALLOW_ORIGINS: "All"
+      HTSGET_DATA_SERVER_CORS_ALLOW_METHODS: "All"
+      HTSGET_DATA_SERVER_CORS_ALLOW_HEADERS: "All"
+      HTSGET_DATA_SERVER_CORS_EXPOSE_HEADERS: "All"
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    volumes:
+      # Change this to any data location to serve files using default settings.
+      - ./data:/data
