@@ -25,4 +25,18 @@ Open the browser:
 open http://localhost:8787/dev/htsget/htsget.html
 ```
 
+## Browser config
+
+Even if CORS is effectively disabled at the server level in this configuration's repo (see `compose.yml`'s **environment** directive for details),
+some browsers will required a bit of settings tweaking, namely:
+
+* **Firefox** will work right away :D
+* Safari will currently not work due to restrictions around the use of [0.0.0.0][0.0.0.0-day].
+
+![safari](./doc/safari_0.0.0.0_error.png)
+* Brave will only work if its implicit Ad-blocking system is disabled.
+![brave](./doc/brave_blocking_adblocker.png)
+![brave](./doc/brave_no_block.png)
+
 [htsget-deploy]: https://github.com/umccr/htsget-deploy
+[0.0.0.0-day]: https://www.oligo.security/blog/0-0-0-0-day-exploiting-localhost-apis-from-the-browser
