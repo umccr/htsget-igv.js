@@ -6,13 +6,32 @@ services:
       HTSGET_TICKET_SERVER_CORS_ALLOW_METHODS: "All"
       HTSGET_TICKET_SERVER_CORS_ALLOW_HEADERS: "All"
       HTSGET_TICKET_SERVER_CORS_EXPOSE_HEADERS: "All"
+      HTSGET_TICKET_SERVER_ADDR: "host.docker.internal:8080"
       HTSGET_DATA_SERVER_CORS_ALLOW_ORIGINS: "All"
       HTSGET_DATA_SERVER_CORS_ALLOW_METHODS: "All"
       HTSGET_DATA_SERVER_CORS_ALLOW_HEADERS: "All"
       HTSGET_DATA_SERVER_CORS_EXPOSE_HEADERS: "All"
+      HTSGET_DATA_SERVER_ADDR: "host.docker.internal:8181"
     ports:
       - "8080:8080"
       - "8081:8081"
     volumes:
-      # Change this to any data location to serve files using default settings.
-      - ./data:/data
+     - ./data:/data
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:8080/reads/service-info"]
+      interval: 10s # How often the status will be checked
+      retries: 5 # How many times to check before considering it unavailable
+      start_period: 10s # How long after startup to begin checks
+      timeout: 10s # Timeout for each test run
+  serve_igvjs:
+    image: python:3-slim
+    command: python3 -m http.server 8787 -d /igv.js
+    restart: unless-stopped
+    ports:
+      - "8787:8787"
+    volumes:
+     - ./igv.js:/igv.js
+    depends_on:
+      htsget-rs:
+        condition: service_healthy
+
