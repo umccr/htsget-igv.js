@@ -10,7 +10,7 @@ dev environment that bypasses CORS for convenience is very useful.
 Assuming you have `docker-(compose)` installed on your local machine, run this one time one liner:
 
 ```sh
-git clone --recursive https://github.com/umccr/htsget-igv.js && cd igv.js && npm install && cd ..
+git clone --recursive https://github.com/umccr/htsget-igv.js && cd htsget-igv.js/igv.js && npm install && cd ..
 ```
 
 Tilt up the docker containers:
