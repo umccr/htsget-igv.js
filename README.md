@@ -30,11 +30,22 @@ open http://localhost:8787/dev/htsget/htsget.html
 Even if CORS is effectively disabled at the server level in this configuration's repo (see `compose.yml`'s **environment** directive for details),
 some browsers will required a bit of settings tweaking, namely:
 
-* **Firefox** will work right away :D
-* Safari will currently not work due to restrictions around the use of [0.0.0.0][0.0.0.0-day].
+### Firefox 
+
+Will work right away :D
+
+Please report if that's not the case for you?
+
+### Safari
+
+Will currently not work due to restrictions around the use of [0.0.0.0][0.0.0.0-day].
 
 ![safari](./doc/safari_0.0.0.0_error.png)
-* Brave will only work if its implicit Ad-blocking system is disabled.
+
+### Brave
+
+Will only work if its implicit Ad-blocking system is disabled as shown below.
+
 ![brave](./doc/brave_blocking_adblocker.png)
 ![brave](./doc/brave_no_block.png)
 
