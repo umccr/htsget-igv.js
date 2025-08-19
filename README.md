@@ -27,10 +27,13 @@ Open the browser:
 open http://localhost:8787/dev/htsget/htsget.html
 ```
 
+If all goes well, you should see the following:
+
+![htsget_allowed_regions](./doc/htsget_igv.js_with_allowed_regions_track.png)
+
 ## Browser config
 
-Even if CORS is effectively disabled at the server level in this configuration's repo (see `compose.yml`'s **environment** directive for details),
-some browsers will required a bit of settings tweaking, namely:
+Even if CORS is effectively disabled at the server level in this configuration's repo (see `compose.yml`'s **environment** directive for details), some browsers will required a bit of settings tweaking, namely:
 
 ### Firefox 
 

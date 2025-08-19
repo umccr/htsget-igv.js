@@ -16,9 +16,10 @@ services:
       - "8080:8080"
       - "8081:8081"
     volumes:
-     - ./data:/data
+      - ./data:/data:ro
     depends_on:
-     - serve_igvjs
+      - serve_igvjs
+      - serve_raw_data
     healthcheck:
       test: ["CMD", "curl", "http://localhost:8080/reads/service-info"]
       interval: 10s # How often the status will be checked
@@ -32,4 +33,13 @@ services:
     ports:
       - "8787:8787"
     volumes:
-     - ./igv.js:/igv.js
+      - ./igv.js:/igv.js:ro
+  serve_raw_data:
+    image: python:3-slim
+    command: python /app/bin/no_cors_http.py 8082 /data
+    restart: unless-stopped
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./data:/data:ro
+      - ./bin:/app/bin:ro
