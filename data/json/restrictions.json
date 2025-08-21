@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "htsgetAuth": [
+    {
+      "path": "bam/mt.sorted",
+      "referenceNames": [
+        {
+          "name": "chrM",
+          "format": "BAM",
+          "start": 5904,
+          "end": 7445
+        }
+      ]
+    }
+  ]
+}

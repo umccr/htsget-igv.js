@@ -21,6 +21,13 @@ Tilt up the docker containers:
 docker compose up
 ```
 
+Add the appropriate JWT Bearer token (if you changed the default one):
+
+```
+uv run bin/gen_keys.py
+<edit igv.js/dev/htsget/htsget.html and add Bearer token on 'header:' JSON igv.js options section>
+```
+
 Open the browser:
 
 ```sh
@@ -49,10 +56,16 @@ Will currently not work due to restrictions around the use of [0.0.0.0][0.0.0.0-
 
 ### Brave
 
-Will only work if its implicit Ad-blocking system is disabled as shown below.
+Will only work if its implicit Ad-blocking is disabled on `localhost`:
+
+![brave](./doc/brave_disable_shields_localhost.png)
+
+<!--
+Those screenshots disable all Ad-blocking, which is not great:
 
 ![brave](./doc/brave_blocking_adblocker.png)
 ![brave](./doc/brave_no_block.png)
+-->
 
 [htsget-deploy]: https://github.com/umccr/htsget-deploy
 [0.0.0.0-day]: https://www.oligo.security/blog/0-0-0-0-day-exploiting-localhost-apis-from-the-browser
