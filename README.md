@@ -21,6 +21,13 @@ Tilt up the docker containers:
 docker compose up
 ```
 
+Add the appropriate JWT Bearer token (if you changed the default one):
+
+```
+uv run bin/genjwt.py data/keys/jwt_example_private_key.pem data/keys/jwt_example_public_key.pem
+<edit igv.js/dev/htsget/htsget.html>
+```
+
 Open the browser:
 
 ```sh
