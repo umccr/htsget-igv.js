@@ -1,0 +1,6 @@
+{
+  "name": "htsget-rs-igv-js",
+  "scripts": {
+    "postinstall": "cd igv.js && npm install"
+  }
+}

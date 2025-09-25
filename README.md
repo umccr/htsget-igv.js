@@ -1,18 +1,22 @@
-# Local development environment for IGV.js + htsget-rs
+# Local development demo for htsget-rs and IGV.js
 
-Production htsget-rs servers can be deployed to several cloud providers via [htsget-deploy], however a local
-dev environment that bypasses CORS for convenience is very useful.
+This project contains an example of htsget-rs and IGV.js, along with the htsget-rs authorization restrictions.
 
-**WARNING:** Never use this environment in production, this is only meant for localhost-only debugging and development.
+It implements the following architecture using local docker compose services:
+
+![architecture.png](doc/architecture.png)
+
+In this repo, the components represent:
+* **UI portal** - the igv-js service in the [compose.yml](compose.yml) which serves [htsget.html](igv.js/dev/htsget/htsget.html).
+* **htsget-rs** - the htsget-rs service in the [compose.yml](compose.yml).
+* **Authorization service** - the authorization service in [compose.yml](compose.yml).
 
 ## Quickstart
 
-Assuming you have `docker-(compose)` installed on your local machine, run this one time one liner:
+Run an npm install:
 
 ```sh
-git clone --recursive https://github.com/umccr/htsget-igv.js && \
-cd htsget-igv.js && \
-(cd igv.js && npm install)
+npm install
 ```
 
 Tilt up the docker containers:
@@ -23,24 +27,30 @@ docker compose up
 
 Add the appropriate JWT Bearer token (if you changed the default one):
 
-```
-uv run bin/gen_keys.py
-<edit igv.js/dev/htsget/htsget.html and add Bearer token on 'header:' JSON igv.js options section>
-```
+Open the browser at:
 
-Open the browser:
-
-```sh
-open http://localhost:8787/dev/htsget/htsget.html
+```
+http://localhost:8787/dev/htsget/htsget.html
 ```
 
 If all goes well, you should see the following:
 
 ![htsget_allowed_regions](./doc/htsget_igv.js_with_allowed_regions_track.png)
 
+## Cloudflare workers
+
+There is an alternative deployment that points igv.js to a publicly available htsget-rs instance deployed on cloudflare at:
+
+```
+http://localhost:8787/dev/htsget/htsget-workers.html
+```
+
+The htsget workers deployment is based on the [htsget-deploy] cloudflare deployment. Remote deployments can also be
+managed from this repository, including on AWS.
+
 ## Browser config
 
-Even if CORS is effectively disabled at the server level in this configuration's repo (see `compose.yml`'s **environment** directive for details), some browsers will required a bit of settings tweaking, namely:
+Even if CORS is effectively disabled at the server level in this configuration's repo (see `compose.yml`'s **environment** directive for details), some browsers will require a bit of settings tweaking, namely:
 
 ### Firefox 
 
