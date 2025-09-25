@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="https://igv.org/web/img/favicon.ico">
+
+    <title>igv.js</title>
+
+</head>
+
+<body>
+
+<h1>htsget server example</h1>
+
+<div id="myDiv" style="padding-top: 50px;padding-bottom: 20px; height: auto"></div>
+
+<script type="module">
+
+    import igv from "../../igv.js/js/index.js"
+
+    var div = document.getElementById("myDiv")
+    var options = {
+        genome: "hg38",
+        locus: "chrM:4,851-8,872",
+        tracks: [
+            {
+               type: 'alignment',
+               name: 'Mithocondrial DNA',
+               sourceType: 'htsget',
+               format: 'BAM',
+               url: 'http://localhost:8080/reads/data/bam/mt.sorted',
+               headers: {"Authorization": `Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6InZuZC5nYTRnaC52aXNhK2p3dCIsImtpZCI6IjEyMzQ1Njc4OSJ9.eyJhY2xhaW0iOnRydWUsInN1YiI6ImFzdWJqZWN0IiwiaWF0IjoxNzU2MTg0Njc3LCJpc3MiOiJodHRwOi8vaGVsbG8iLCJleHAiOjE3NTczOTQyNzcsImp0aSI6IkJYQUhoYmpNQ1dIZkFKNWgifQ.fiWECiUkfhz2Y58dfG2aB8vS2LRfK8mnbZdRw-F9ugp6FQNE0cVyvoZq3HGbFto14BYvnBVkeN5dkq9z9coBWSFGlZzr8ENCh9GKg-eU2mfzJ5BbDL1fTESKETVKw3uGr4fAnwQyFl47fu2OD8pz5mRTjdELmPf2oO7oLQdUJgdV4NK6gbGDNj4ivLIFoG_xpHx5zmmE22qgPQ23xD-XDgNjHqBOtjrpVcgvNaDp85U7OXOGjMPiTxKeexAZ06D12TyjyuBOnlk-kGIvrAkag8bHG7bj7fdGztyPpZdR-iE5V4_F756J09J38-Beie3X2il44hmEBe8vm4Gc-YIDCw`}, // pragma: allowlist secret
+            },
+            {
+                name: "Allowed htsget regions",
+                url: "http://localhost:8082/data/bed/allowed_regions.bed",
+                format: "bed",
+                type: "annotation",
+                colorBy: "name",
+                colorTable: {
+                    "Forbidden": "red",
+                    "Allowed": "green"
+                }
+            }
+        ]
+    }
+
+    igv.createBrowser(div, options)
+
+        .then(function (browser) {
+            console.log("Created IGV browser")
+        })
+
+
+</script>
+
+</body>
+
+</html>

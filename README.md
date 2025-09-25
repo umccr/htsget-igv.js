@@ -30,7 +30,7 @@ Add the appropriate JWT Bearer token (if you changed the default one):
 Open the browser at:
 
 ```
-http://localhost:8787/dev/htsget/htsget.html
+http://localhost:8787/igv.js/data/pages/htsget.html
 ```
 
 If all goes well, you should see the following:
@@ -42,7 +42,7 @@ If all goes well, you should see the following:
 There is an alternative deployment that points igv.js to a publicly available htsget-rs instance deployed on cloudflare at:
 
 ```
-http://localhost:8787/dev/htsget/htsget-workers.html
+http://localhost:8787/igv.js/data/pages/htsget-workers.html
 ```
 
 The htsget workers deployment is based on the [htsget-deploy] cloudflare deployment. Remote deployments can also be

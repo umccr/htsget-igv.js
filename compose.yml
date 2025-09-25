@@ -32,12 +32,12 @@ services:
       timeout: 10s # Timeout for each test run
   igv-js:
     image: python:3-slim
-    command: python3 -m http.server 8787 -d /igv.js
+    command: python3 -m http.server 8787 -d /
     restart: unless-stopped
     ports:
       - "8787:8787"
     volumes:
-      - ./igv.js:/igv.js:ro
+      - ./:/igv.js:ro
   authorization:
     image: python:3-slim
     command: python /app/bin/no_cors_http.py 8082 /data
